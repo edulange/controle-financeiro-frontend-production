@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-	baseURL: 'http://localhost:3000/api/despesas',
+	baseURL: 'https://controle-financeiro-backend.onrender.com/api/despesas', //'http://localhost:3000/api/despesas',
 })
 
 // Função para obter o token JWT do armazenamento local
