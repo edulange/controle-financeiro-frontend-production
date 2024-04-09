@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setFilter } from '../reducers/filterReducer'
+import meses from '../../utils/meses'
 
 const SaldoMensal = ({ despesas, usuario }) => {
 	const dispatch = useDispatch()
@@ -28,21 +29,6 @@ const SaldoMensal = ({ despesas, usuario }) => {
 		console.log(`Escolhido o mês ${mes}`)
 	}
 
-	const meses = [
-		{ value: '00', label: 'Anual' },
-		{ value: '01', label: 'Janeiro' },
-		{ value: '02', label: 'Fevereiro' },
-		{ value: '03', label: 'Março' },
-		{ value: '04', label: 'Abril' },
-		{ value: '05', label: 'Maio' },
-		{ value: '06', label: 'Junho' },
-		{ value: '07', label: 'Julho' },
-		{ value: '08', label: 'Agosto' },
-		{ value: '09', label: 'Setembro' },
-		{ value: '10', label: 'Outubro' },
-		{ value: '11', label: 'Novembro' },
-		{ value: '12', label: 'Dezembro' },
-	]
 
 	return (
 		<div className='flex justify-center items-center'>

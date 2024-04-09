@@ -6,39 +6,39 @@ const api = axios.create({
 
 // Função para obter o token JWT do armazenamento local
 const getToken = () => {
-  return localStorage.getItem('token')
+	return localStorage.getItem('token')
 }
 
 const getAll = () => {
-  return api.get('/', {
-    headers: {
-      Authorization: `Bearer ${getToken()}` // Inclui o token JWT no cabeçalho da solicitação
-    }
-  })
+	return api.get('/', {
+		headers: {
+			Authorization: `Bearer ${getToken()}`, // Inclui o token JWT no cabeçalho da solicitação
+		},
+	})
 }
 
 const create = (newObject) => {
-  return api.post('/', newObject, {
-    headers: {
-      Authorization: `Bearer ${getToken()}`
-    }
-  })
+	return api.post('/', newObject, {
+		headers: {
+			Authorization: `Bearer ${getToken()}`,
+		},
+	})
 }
 
 const update = (id, newObject) => {
-  return api.put(`/${id}`, newObject, {
-    headers: {
-      Authorization: `Bearer ${getToken()}`
-    }
-  })
+	return api.put(`/${id}`, newObject, {
+		headers: {
+			Authorization: `Bearer ${getToken()}`,
+		},
+	})
 }
 
 const deleteDespesa = (id) => {
-  return api.delete(`/${id}`, {
-    headers: {
-      Authorization: `Bearer ${getToken()}`
-    }
-  })
+	return api.delete(`/${id}`, {
+		headers: {
+			Authorization: `Bearer ${getToken()}`,
+		},
+	})
 }
 
 export default { getAll, create, update, deleteDespesa }
