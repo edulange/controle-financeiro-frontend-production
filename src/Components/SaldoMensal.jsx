@@ -24,7 +24,7 @@ const SaldoMensal = ({ despesas, usuario }) => {
 	//essas 3 [] indicam que sempre que um deles sofrer alguma alteração
 	//irá fazer novamente uma renderização
 
-	const filtrarPorMes = (mes) => {
+	const mudarMes = (mes) => {
 		dispatch(setFilter(mes))
 		console.log(`Escolhido o mês ${mes}`)
 	}
@@ -34,7 +34,7 @@ const SaldoMensal = ({ despesas, usuario }) => {
 		<div className='flex justify-center items-center'>
 			<select
 				value={mesSelecionado}
-				onChange={(e) => filtrarPorMes(e.target.value)}
+				onChange={(e) => mudarMes(e.target.value)}
 				className='font-bold block mr-4 p-2 border border-gray-300 rounded-xl shadow-2xl focus:outline-none focus:border-primary bg-tertiary text-gray-700'
 			>
 				{meses.map(({ value, label }) => (

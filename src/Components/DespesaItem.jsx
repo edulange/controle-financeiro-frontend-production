@@ -5,15 +5,17 @@ const DespesaItem = ({ despesa, onDelete }) => {
         onDelete(despesa.id);
     }, [despesa.id, onDelete]);
 
-    const { dia, valor, observacao, categoria } = despesa;
+    const { dia: data, valor, observacao, categoria } = despesa;
+
+    const [dia, mes, ano] = data.split('/');
 
     return (
         <li onClick={handleDelete} className='flex items-center justify-between py-2 border-b-2 border-primary cursor-pointer'>
-            <div>
-                <span className='font-bold ml-2'></span> R$ {valor.toFixed(2)} |
-                 {' '}{dia} |
-                <span className='font-bold ml-2'>Motivo:</span> {observacao} |
-                <span className='font-bold ml-2'>Categoria:</span> {categoria}
+            <div className='flex'>
+                <div className='min-w-16'>{dia}/{mes}</div>
+                <div className='min-w-24'>R$ {valor.toFixed(2)}</div>
+                <div className='ms-4 min-w-24'>{categoria}</div>
+                <div className='ms-4 flex-grow'>{observacao}</div>
             </div>
         </li>
     );

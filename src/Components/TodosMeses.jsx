@@ -1,12 +1,10 @@
 import React from 'react'
 import meses from '../../utils/meses'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setFilter } from '../reducers/filterReducer'
 
 const TodosMeses = ({ usuario, despesas }) => {
-    const dispatch = useDispatch()
-	const mesSelecionado = useSelector((state) => state.filter)
-    //ano funcionou o onClick
+	const dispatch = useDispatch()
 
 	// Função para calcular o total das despesas por mês para o usuário logado
 	const calcularTotalDespesasPorMes = () => {
@@ -33,29 +31,69 @@ const TodosMeses = ({ usuario, despesas }) => {
 		return totalDespesasPorMes
 	}
 
+	const calcularTodoInvestimentoPorMes = () => {
+		const totalInvestimentoPorMes = {}
+
+		meses.forEach(({ value }) => {
+			totalInvestimentoPorMes[value] = 0
+		})
+
+		const despesasUsuario = despesas.filter((despesa) => despesa.createdBy.id === usuario)
+		const investimentoUsuario = despesasUsuario.filter((despesa) => despesa.categoria === 'Investimento')
+
+		investimentoUsuario.forEach((despesa) => {
+			const [dia, mes, ano] = despesa.dia.split('/')
+			const mesDespesa = mes
+
+			// Adicionar o valor da despesa ao total do mês correspondente
+			totalInvestimentoPorMes[mesDespesa] += despesa.valor
+		})
+
+		return totalInvestimentoPorMes
+	}
+
+	const totalInvestimentoPorMes = calcularTodoInvestimentoPorMes()
+
 	// Calcular o total das despesas por mês para o usuário logado
 	const totalDespesasPorMes = calcularTotalDespesasPorMes()
 
-    const filtrarPorMes = (mes) => {
-		dispatch(setFilter(mes))
-	}
+	const filtrarPorMes = (mes) => dispatch(setFilter(mes))
 
 	return (
 		<div>
-			<h2 className="text-lg font-bold mb-2 min-w-80">Histórico Meses</h2>
-			<div className="grid grid-cols-1 gap-4 ">
-				{meses.map(({ value, label }) => (
-					totalDespesasPorMes[value] !== 0 && (
-						<div key={value} className="flex justify-between items-center bg-gray-100 p-2 rounded-xl mb-1 shadow-xl" onClick={() => filtrarPorMes(value)}>
-							<span className="font-semibold">{label}</span>
-							<span>{totalDespesasPorMes[value].toFixed(2)}</span>
-						</div>
-					)
-				))}
+			<h2 className='text-lg font-bold mb-2 min-w-80'>Histórico Meses</h2>
+			<div className='grid grid-cols-1 gap-4'>
+				{meses.map(
+					({ value, label }) =>
+						totalDespesasPorMes[value] !== 0 && (
+							<div
+								key={value}
+								className={`flex flex-col bg-gray-100 p-2 rounded-xl mb-1 ${
+									totalDespesasPorMes[value] > 0 ? 'shadow-lucro' : 'shadow-deficit'
+								}`}
+							>
+								<div
+									className='flex justify-between items-center mb-1'
+									onClick={() => filtrarPorMes(value)}
+								>
+									<span className='font-semibold'>{label}</span>
+									<span>{totalDespesasPorMes[value].toFixed(2)}</span>
+								</div>
+								<div
+									className='flex justify-between items-center'
+									onClick={() => filtrarPorMes(value)}
+								>
+									<span className='font-thin text-xs text-gray-600'>Investimento:</span>
+									<span className='text-xs text-primary'>
+										{(totalInvestimentoPorMes[value] * -1).toFixed(2)}
+									</span>
+								</div>
+							</div>
+						)
+				)}
 			</div>
 		</div>
-	);
-	
-};
+	)
+}
 
 export default TodosMeses
