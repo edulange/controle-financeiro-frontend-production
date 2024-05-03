@@ -2,6 +2,25 @@
 	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
+.shadow-deficit {
+	box-shadow: 0 2px 4px rgba(255, 0, 0, 0.5);
+	transition: box-shadow 0.3s ease;
+  }
+
+.shadow-lucro {
+	box-shadow: 0 2px 4px rgba(0, 255, 34, 0.5);
+	transition: box-shadow 0.3s ease;
+  }
+  
+.shadow-deficit:hover {
+	box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
+  }
+
+.shadow-lucro:hover {
+	box-shadow: 0 10px 20px rgba(0, 255, 34, 0.3);
+  }
+  
+
 button {
 	transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 	border-radius: 1rem; /* 16px */
