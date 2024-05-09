@@ -23,7 +23,7 @@ const DespesaItem = ({ despesa, onDelete }) => {
 				</div>
 
 				<div className='ms-4 min-w-24'>{categoria}</div>
-				<div className='ms-4 flex-grow'>{observacao}</div>
+				<div className='ms-4 flex-grow'>{observacao.substring(0, 25)}</div>
 			</div>
 		</li>
 	)

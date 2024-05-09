@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch} from 'react-redux'
+import { useSelector } from 'react-redux'
 import HistoricoDespesas from '../Components/HistoricoDespesas'
 import DespesaForm from '../Components/DespesaForm'
 import SaldoMensal from '../Components/SaldoMensal'
@@ -7,6 +7,7 @@ import TodosMeses from '../Components/TodosMeses'
 import despesaService from '../controllers/despesas'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
+import { useDispatch } from 'react-redux'
 import { setFilter } from '../reducers/filterReducer'
 
 const HomePage = () => {
@@ -61,7 +62,7 @@ const HomePage = () => {
 	}
 
 	return (
-		<div className='container mx-auto bg-tertiary  mt-8 px-4 py-8 rounded-2xl flex flex-col items-center shadow-2xl relative max-w-[800px]'>
+		<div className='container mx-auto bg-tertiary  my-8 px-4 py-8 rounded-2xl flex flex-col items-center shadow-2xl relative max-w-[800px]'>
 			<div className='mb-8'>
 				<SaldoMensal despesas={despesas} usuario={usuario} />
 			</div>

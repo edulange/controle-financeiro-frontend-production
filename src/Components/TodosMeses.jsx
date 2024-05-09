@@ -68,7 +68,7 @@ const TodosMeses = ({ usuario, despesas }) => {
 						totalDespesasPorMes[value] !== 0 && (
 							<div
 								key={value}
-								className={`flex flex-col bg-gray-100 p-2 rounded-xl mb-1 ${
+								className={`flex flex-col bg-gray-100 p-2 rounded-xl mb-1 cursor-pointer ${
 									totalDespesasPorMes[value] > 0 ? 'shadow-lucro' : 'shadow-deficit'
 								}`}
 							>
